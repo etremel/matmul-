@@ -1,0 +1,6 @@
+Peer review for Group 26 from Group 24
+
+1) The group did well in attempting multiple levels of blocking, which is something our group is hoping to do. The group also used Intel intrinsic functions that we were unfamiliar with and could potentially be a good addition to our code. In common, our groups performed index order optimization, copy optimization, blocking and using the restrict keyword.
+2) Some suggested improvements:
+- The group could try giving "-unroll-aggressive" and "-xCORE-AVX2" flags to the icc compiler, which respectively aggressively unrolls loops and asks the compiler to generate AVX2 instructions if possible. In particular we noticed that the group didn't try any loop unroll flags for the compiler, like "-funroll-loops". These flags improved our performance greatly.
+- We believe there shouldn't be a difference in whether the matrices are stored in row-major or column-major form. We conjecture that the added complexity of transposing a matrix to row-major could have been avoided if the index ordering is simply changed so that the loop order is optimized for the matrices being stored in column-major form. If the group had attempted optimizing the index order first before implementing copy optimization then perhaps they would have discovered this.
