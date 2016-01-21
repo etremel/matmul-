@@ -1,0 +1,11 @@
+Good things:
+    - Good experimentation with the 2 levels of block size, especially not limiting yourself by the theoretical size that the cache suggests. Its interesting that performance tended to increase as block size increased. Did you try any levels beyond 64 and 256?
+    - Good work thinking closely about row/column optimization and in what order blocks should be copied in for copy optimization based off the ordering of operations on the matrices.
+    - Good job on the vectorized operations. This is something we are interested in doing. its surprising that performance decreased as I would expect to increase as long as the memory accesses make sense and are aligned properly. Perhaps using AVX instructions would be better than SSE? I also think you can support more than 128d, I think the E5 2620 v3s support 256d at least.
+
+Things to work on:
+    - More work on blocking. You all worked on optimizing block size among the first two levels of the cache, but adding a third level which fits into the L3 cache may improve performance further.
+    - Copy optimization could be extended to the lowest level (most inner block) and be used on both A and B to improve memory access patterns. We found this to be useful regardless of row/column-major ordering.
+
+Additional Comment
+    - Your line for BLAS is for Anaconda's version of BLAS. If you load openblas after cs5220 you should get BLAS performing at approximately the same level as MKL
